@@ -27,8 +27,8 @@ public class HelperDB extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "dbexam.db";
     private static final int DATABASE_VERSION = 1;
     private String strCreate, strDelete;
-    public HelperDB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public HelperDB(@Nullable Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate+=" "+SUBJECT+" TEXT,";
         strCreate+=" "+GRADE+" INTEGER";
         strCreate+=" "+QUARTER+" INTEGER";
-        strCreate+=" "+ASSIGNMENT_TYPE+" TEXT,";
+        strCreate+=" "+ASSIGNMENT_TYPE+" TEXT";
         strCreate+=");";
         sqLiteDatabase.execSQL(strCreate);
 
@@ -59,6 +59,11 @@ public class HelperDB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        strDelete="DROP TABLE IF EXISTS "+TABLE_STUDENT;
+        sqLiteDatabase.execSQL(strDelete);
+        strDelete="DROP TABLE IF EXISTS "+TABLE_GRADES;
+        sqLiteDatabase.execSQL(strDelete);
 
+        onCreate(sqLiteDatabase);
     }
 }

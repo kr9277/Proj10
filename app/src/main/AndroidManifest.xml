@@ -13,6 +13,15 @@
         android:theme="@style/Theme.Proj10"
         tools:targetApi="31">
         <activity
+            android:name=".Sort"
+            android:exported="false" />
+        <activity
+            android:name=".Update"
+            android:exported="false" />
+        <activity
+            android:name=".WatchTables"
+            android:exported="false" />
+        <activity
             android:name=".Grades_Activity"
             android:exported="false" />
         <activity

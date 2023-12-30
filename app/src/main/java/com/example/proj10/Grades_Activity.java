@@ -1,8 +1,13 @@
 package com.example.proj10;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +19,8 @@ import android.widget.Adapter;
 
 public class Grades_Activity extends AppCompatActivity implements View.OnCreateContextMenuListener,
         AdapterView.OnItemSelectedListener {
+    private SQLiteDatabase db;
+    private HelperDB hlp;
     Button btn2;
     Spinner sp1, sp2;
     EditText Subject, Grade;
@@ -27,6 +34,54 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades);
+
+        initAll();
+    }
+    /**
+     * onCreateOptionsMenu method
+     * <p> Creating the options menu
+     * </p>
+     *
+     * @param menu the Menu object to pass to the inflater
+     * @return true
+     */
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.tafrit, menu);
+        return true;
+    }
+    /**
+     * onOptionsItemSelected method
+     * <p> Reacting the options menu
+     * </p>
+     *
+     * @param item the MenuItem object that triggered by the listener
+     * @return super.onOptionsItemSelected(item)
+     */
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+        String str = item.getTitle().toString();
+        if(str.equals("watch tables")){
+            Intent intent = new Intent(this, WatchTables.class);
+            startActivity(intent);
+        }
+        if(str.equals("credits activity")){
+            Intent intent = new Intent(this, Credits_Activity.class);
+            startActivity(intent);
+        }
+        if(str.equals("input student")){
+            Intent intent = new Intent(this, StudentActivity.class);
+            startActivity(intent);
+        }
+        if(str.equals("input grades")){
+            Intent intent = new Intent(this, Grades_Activity.class);
+            startActivity(intent);
+        }
+        if(str.equals("sort")){
+            Intent intent = new Intent(this, Sort.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    private void initAll() {
         btn2 = findViewById(R.id.btn2);
         sp1 = findViewById(R.id.sp1);
         sp2 = findViewById(R.id.sp2);
@@ -36,6 +91,10 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
         ArrayAdapter<String> adp_sp2=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, quarter);
         sp1.setAdapter(adp_sp1);
         sp2.setAdapter(adp_sp2);
+
+        hlp = new HelperDB(this);
+        db = hlp.getWritableDatabase();
+        db.close();
     }
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

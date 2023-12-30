@@ -32,7 +32,7 @@
         android:layout_width="305dp"
         android:layout_height="0px"
         android:layout_weight="1"
-        android:text="Hellow Hellow my name is Karin and your name is Albert"
+        android:text="Hellow Hellow, thank you for using my aplication :)"
         android:textColor="#E91E63"
         android:textSize="24sp" />
 
