@@ -3,6 +3,7 @@ package com.example.proj10;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -28,7 +29,8 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
     String[] quarter = {"Choose a quarter", "first", "second", "third", "fourth"};
     String AssignmentType;
     int Quarter;
-
+    ContentValues cv = new ContentValues();
+    String subject, grade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +73,8 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
             Intent intent = new Intent(this, StudentActivity.class);
             startActivity(intent);
         }
-        if(str.equals("input grades")){
-            Intent intent = new Intent(this, Grades_Activity.class);
+        if(str.equals("update tables")){
+            Intent intent = new Intent(this, Update.class);
             startActivity(intent);
         }
         if(str.equals("sort")){
@@ -91,6 +93,8 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
         ArrayAdapter<String> adp_sp2=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, quarter);
         sp1.setAdapter(adp_sp1);
         sp2.setAdapter(adp_sp2);
+        subject = Subject.getText().toString();
+        grade = Grade.getText().toString();
 
         hlp = new HelperDB(this);
         db = hlp.getWritableDatabase();
@@ -107,6 +111,17 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
             }
         }
     }
+    public void Save(View view){
+        if(!Subject.getText().equals("")){
+            cv.put(Grades.SUBJECT, subject);
+        }
+        if(!(Grade.getText().toString().equals(""))){
+            cv.put(Grades.GRADE, grade);
+        }
+        cv.put(Grades.ASSIGNMENT_TYPE, AssignmentType);
+        cv.put(Grades.QUARTER, Quarter);
+    }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {

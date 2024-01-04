@@ -102,7 +102,7 @@
             android:layout_height="0px"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Mom's name:"
+            android:hint="Dad's name:"
             android:inputType="text" />
 
         <Space
@@ -116,8 +116,8 @@
             android:layout_height="0px"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="text"
-            android:hint="Father's name:" />
+            android:hint="Momr's name:"
+            android:inputType="text" />
 
         <Space
             android:layout_width="match_parent"
@@ -130,7 +130,7 @@
             android:layout_height="0px"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="Mom's phone:"
+            android:hint="Dad's phone:"
             android:inputType="number" />
 
         <Space
@@ -144,8 +144,8 @@
             android:layout_height="0px"
             android:layout_weight="1"
             android:ems="10"
-            android:inputType="number"
-            android:hint="Dad's phone:" />
+            android:hint="Mom's phone:"
+            android:inputType="number" />
 
         <Space
             android:layout_width="match_parent"
@@ -159,7 +159,7 @@
             android:layout_weight="1.6"
             android:hint="Save"
             android:onClick="save_student"
-            android:text="Save" />
+            android:text="Save Data" />
 
         <Space
             android:layout_width="match_parent"

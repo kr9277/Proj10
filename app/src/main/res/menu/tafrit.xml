@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:title="watch tables" />
     <item
-        android:id="@+id/update tables"
+        android:id="@+id/update_tables"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="update tables" />

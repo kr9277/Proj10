@@ -41,16 +41,16 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate+=" "+HOME_NUMBER+" INTEGER,";
         strCreate+=" "+DAD_NAME+" TEXT,";
         strCreate+=" "+MOM_NAME+" TEXT,";
-        strCreate+=" "+DAD_NUMBER+" INTEGER";
+        strCreate+=" "+DAD_NUMBER+" INTEGER,";
         strCreate+=" "+MOM_NUMBER+" INTEGER";
         strCreate+=");";
         sqLiteDatabase.execSQL(strCreate);
 
         strCreate="CREATE TABLE "+TABLE_GRADES;
-        strCreate+=" ("+KEY_ID+" INTEGER PRIMARY KEY,";
+        strCreate+=" ("+KEY_ID+" INTEGER,";
         strCreate+=" "+SUBJECT+" TEXT,";
-        strCreate+=" "+GRADE+" INTEGER";
-        strCreate+=" "+QUARTER+" INTEGER";
+        strCreate+=" "+GRADE+" INTEGER,";
+        strCreate+=" "+QUARTER+" INTEGER,";
         strCreate+=" "+ASSIGNMENT_TYPE+" TEXT";
         strCreate+=");";
         sqLiteDatabase.execSQL(strCreate);
