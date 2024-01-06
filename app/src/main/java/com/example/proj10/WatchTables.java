@@ -35,31 +35,27 @@ public class WatchTables extends AppCompatActivity implements AdapterView.OnItem
     private int tablechoise;
     private AlertDialog.Builder adb;
 
-    public WatchTables(Cursor crsr) {
-        this.crsr = crsr;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch_tables);
-//        lv1=(ListView)findViewById(R.id.lv1);
-//        lv2=(ListView)findViewById(R.id.lv2);
-//
-//        hlp=new HelperDB(this);
-//        db=hlp.getWritableDatabase();
-//        db.close();
-//
-//        lv1.setOnItemClickListener(this);
-//        lv1.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-//        lv2.setOnItemClickListener(this);
-//        lv2.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
-//
-//        tablechoise=0;
-//
-//        String[] tables={TABLE_STUDENT,TABLE_GRADES};
-//        ArrayAdapter<String> adp=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,tables);
-//        lv1.setAdapter(adp);
+        lv1=(ListView)findViewById(R.id.lv1);
+        lv2=(ListView)findViewById(R.id.lv2);
+
+        hlp=new HelperDB(this);
+        db=hlp.getWritableDatabase();
+        db.close();
+
+        lv1.setOnItemClickListener(this);
+        lv1.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+        lv2.setOnItemClickListener(this);
+        lv2.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+
+        tablechoise=0;
+
+        String[] tables={TABLE_STUDENT,TABLE_GRADES};
+        ArrayAdapter<String> adp=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,tables);
+        lv1.setAdapter(adp);
     }
     /**
      * onItemClick
