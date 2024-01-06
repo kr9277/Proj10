@@ -15,6 +15,7 @@ import static com.example.proj10.Student.DAD_NAME;
 import static com.example.proj10.Student.MOM_NAME;
 import static com.example.proj10.Student.DAD_NUMBER;
 import static com.example.proj10.Student.MOM_NUMBER;
+import static com.example.proj10.Student.ID;
 import static com.example.proj10.Grades.TABLE_GRADES;
 import static com.example.proj10.Grades.SUBJECT;
 import static com.example.proj10.Grades.GRADE;
@@ -43,6 +44,7 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate+=" "+MOM_NAME+" TEXT,";
         strCreate+=" "+DAD_NUMBER+" INTEGER,";
         strCreate+=" "+MOM_NUMBER+" INTEGER";
+        strCreate+=" "+ID+" INTEGER";
         strCreate+=");";
         sqLiteDatabase.execSQL(strCreate);
 

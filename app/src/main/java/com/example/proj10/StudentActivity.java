@@ -18,10 +18,10 @@ import android.widget.Toast;
 public class StudentActivity extends AppCompatActivity implements View.OnCreateContextMenuListener {
     private SQLiteDatabase db;
     private HelperDB hlp;
-    EditText et1, et2, et3, et4, et5, et6, et7, et8;
+    EditText et1, et2, et3, et4, et5, et6, et7, et8, et9;
     Button btn1;
     ContentValues cv = new ContentValues();
-    String name, address, phone_number, home_number, dad_name, mom_name, dad_number, mom_number;
+    String name, address, phone_number, home_number, dad_name, mom_name, dad_number, mom_number, Id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +38,7 @@ public class StudentActivity extends AppCompatActivity implements View.OnCreateC
         et6 = findViewById(R.id.et6);
         et7 = findViewById(R.id.et7);
         et8 = findViewById(R.id.et8);
+        et9 = findViewById(R.id.et9);
         btn1 = findViewById(R.id.btn1);
         name = et1.getText().toString();
         address = et2.getText().toString();
@@ -47,6 +48,7 @@ public class StudentActivity extends AppCompatActivity implements View.OnCreateC
         mom_name = et6.getText().toString();
         dad_number = et7.getText().toString();
         mom_number = et8.getText().toString();
+        Id = et9.getText().toString();;
 
         hlp = new HelperDB(this);
         db = hlp.getWritableDatabase();
@@ -97,43 +99,50 @@ public class StudentActivity extends AppCompatActivity implements View.OnCreateC
         return super.onOptionsItemSelected(item);
     }
     public void save_student(View view) {
-        if (!et1.getText().equals("")) {
-            cv.put(Student.NAME, name);
-        }
-        if (!et2.getText().equals("")) {
-            cv.put(Student.ADDRESS, address);
-        }
-        if (!(et3.getText().toString().equals(""))) {
-            cv.put(Student.PHONE_NUMBER, phone_number);
-        }
-        if (!(et4.getText().toString().equals(""))) {
-            cv.put(Student.HOME_NUMBER, home_number);
-        }
-        if (!et5.getText().equals("")) {
-            cv.put(Student.DAD_NAME, dad_name);
-        }
-        if (!et6.getText().equals("")) {
-            cv.put(Student.MOM_NAME, mom_name);
-        }
-        if (!(et7.getText().toString().equals(""))) {
-            cv.put(Student.DAD_NUMBER, dad_number);
-        }
-        if (!(et8.getText().toString().equals(""))) {
-            cv.put(Student.MOM_NUMBER, mom_number);
-        }
-        db = hlp.getWritableDatabase();
-        db.insert(Student.TABLE_STUDENT, null, cv);
-        db.close();
+        if(!(et9.getText().toString().equals(""))){
+            cv.put(Student.ID, Id);
+            if (!et1.getText().equals("")) {
+                cv.put(Student.NAME, name);
+            }
+            if (!et2.getText().equals("")) {
+                cv.put(Student.ADDRESS, address);
+            }
+            if (!(et3.getText().toString().equals(""))) {
+                cv.put(Student.PHONE_NUMBER, phone_number);
+            }
+            if (!(et4.getText().toString().equals(""))) {
+                cv.put(Student.HOME_NUMBER, home_number);
+            }
+            if (!et5.getText().equals("")) {
+                cv.put(Student.DAD_NAME, dad_name);
+            }
+            if (!et6.getText().equals("")) {
+                cv.put(Student.MOM_NAME, mom_name);
+            }
+            if (!(et7.getText().toString().equals(""))) {
+                cv.put(Student.DAD_NUMBER, dad_number);
+            }
+            if (!(et8.getText().toString().equals(""))) {
+                cv.put(Student.MOM_NUMBER, mom_number);
+            }
+            db = hlp.getWritableDatabase();
+            db.insert(Student.TABLE_STUDENT, null, cv);
+            db.close();
 
-        et1.setText("");
-        et2.setText("");
-        et3.setText("");
-        et4.setText("");
-        et5.setText("");
-        et6.setText("");
-        et7.setText("");
-        et8.setText("");
-        Toast.makeText(this, "Data pushed to Students table", Toast.LENGTH_LONG).show();
+            et1.setText("");
+            et2.setText("");
+            et3.setText("");
+            et4.setText("");
+            et5.setText("");
+            et6.setText("");
+            et7.setText("");
+            et8.setText("");
+            et9.setText("");
+            Toast.makeText(this, "Data pushed to Students table", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(this, "You did not entered the student's ID", Toast.LENGTH_LONG).show();
+        }
     }
 }
 
