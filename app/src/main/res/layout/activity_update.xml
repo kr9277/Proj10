@@ -1,9 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".Update">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.1" />
+
+    <TextView
+        android:id="@+id/tvtitle"
+        android:layout_width="356dp"
+        android:layout_height="0px"
+        android:layout_weight="0.4"
+        android:gravity="center"
+        android:text="Update Data Activity:"
+        android:textColor="#3F51B5"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2" />
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.1" />
+
+            <TextView
+                android:id="@+id/tvtables"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5"
+                android:text="Tables:" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:id="@+id/tvrecord"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5"
+                android:text="Record:" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:id="@+id/tvfield"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5"
+                android:text="Field:" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.3" />
+
+            <TextView
+                android:id="@+id/tvadd"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5"
+                android:text="Value to be updated:" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.1" />
+
+            <ListView
+                android:id="@+id/lvtables"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.5" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.2" />
+
+            <ListView
+                android:id="@+id/lvrecord"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.2" />
+
+            <ListView
+                android:id="@+id/lvfield"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="1" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.2" />
+
+            <EditText
+                android:id="@+id/etadd"
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.4"
+                android:ems="10"
+                android:hint=""
+                android:inputType="text" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0px"
+                android:layout_weight="0.1" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.2" />
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="144dp"
+        android:layout_height="0px"
+        android:layout_weight="0.4"
+        android:onClick="update_data"
+        android:text="UPDATE" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="0.2" />
+</LinearLayout>

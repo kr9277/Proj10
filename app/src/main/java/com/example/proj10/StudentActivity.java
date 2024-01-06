@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.os.Bundle;
 import android.widget.Toast;
 
-public class StudentActivity extends AppCompatActivity {
+public class StudentActivity extends AppCompatActivity implements View.OnCreateContextMenuListener {
     private SQLiteDatabase db;
     private HelperDB hlp;
     EditText et1, et2, et3, et4, et5, et6, et7, et8;
@@ -121,6 +121,19 @@ public class StudentActivity extends AppCompatActivity {
         if (!(et8.getText().toString().equals(""))) {
             cv.put(Student.MOM_NUMBER, mom_number);
         }
+        db = hlp.getWritableDatabase();
+        db.insert(Student.TABLE_STUDENT, null, cv);
+        db.close();
+
+        et1.setText("");
+        et2.setText("");
+        et3.setText("");
+        et4.setText("");
+        et5.setText("");
+        et6.setText("");
+        et7.setText("");
+        et8.setText("");
+        Toast.makeText(this, "Data pushed to Students table", Toast.LENGTH_LONG).show();
     }
 }
 

@@ -27,10 +27,9 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
     EditText Subject, Grade;
     String[] assignment_type = {"Choose a assignment", "task","exam","test"};
     String[] quarter = {"Choose a quarter", "first", "second", "third", "fourth"};
-    String AssignmentType;
     int Quarter;
     ContentValues cv = new ContentValues();
-    String subject, grade;
+    String subject, grade, AssignmentType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +110,7 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
             }
         }
     }
-    public void Save(View view){
+    public void save_grades(View view){
         if(!Subject.getText().equals("")){
             cv.put(Grades.SUBJECT, subject);
         }
@@ -120,6 +119,14 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
         }
         cv.put(Grades.ASSIGNMENT_TYPE, AssignmentType);
         cv.put(Grades.QUARTER, Quarter);
+
+        db = hlp.getWritableDatabase();
+        db.insert(Grades.TABLE_GRADES, null, cv);
+        db.close();
+
+        Subject.setText("");
+        Grade.setText("");
+        Toast.makeText(this, "Data pushed to Grades table", Toast.LENGTH_LONG).show();
     }
 
 

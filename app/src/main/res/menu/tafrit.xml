@@ -5,7 +5,7 @@
         android:id="@+id/input_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Input student" />
+        android:title="input student" />
     <item
         android:id="@+id/input_grades"
         android:layout_width="wrap_content"
