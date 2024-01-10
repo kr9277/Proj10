@@ -43,7 +43,7 @@ public class HelperDB extends SQLiteOpenHelper {
         strCreate+=" "+DAD_NAME+" TEXT,";
         strCreate+=" "+MOM_NAME+" TEXT,";
         strCreate+=" "+DAD_NUMBER+" INTEGER,";
-        strCreate+=" "+MOM_NUMBER+" INTEGER";
+        strCreate+=" "+MOM_NUMBER+" INTEGER,";
         strCreate+=" "+ID+" INTEGER";
         strCreate+=");";
         sqLiteDatabase.execSQL(strCreate);

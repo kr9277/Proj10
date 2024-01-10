@@ -27,7 +27,7 @@ import static com.example.proj10.Grades.TABLE_GRADES;
 import static com.example.proj10.Student.TABLE_STUDENT;
 import static com.example.proj10.Student.KEY_ID;
 
-public class WatchTables extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class WatchTables extends AppCompatActivity implements AdapterView.OnItemClickListener, View.OnCreateContextMenuListener {
 
     private SQLiteDatabase db;
     private HelperDB hlp;
@@ -52,25 +52,18 @@ public class WatchTables extends AppCompatActivity implements AdapterView.OnItem
         tvgrades = findViewById(R.id.tvgrades);
 
 
-        hlp=new HelperDB(this);
-        db=hlp.getWritableDatabase();
+        hlp = new HelperDB(this);
+        db = hlp.getWritableDatabase();
         db.close();
 
         lvshow.setOnItemClickListener(this);
         lvshow.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
     }
-    /**
-     * onItemClick
-     * <p>
-     * This method react to the selected option in the listViews
-     * @param parent the listView selected
-     * @param view the view
-     * @param position the position selected
-     * @param id the id selected
-     */
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+
+    public void onSwitch(View v) {
         if (!sw.isChecked()) {
+            db = hlp.getWritableDatabase();
             crsr = db.query(TABLE_STUDENT, null, null, null, null, null, null);
             int col1 = crsr.getColumnIndex(Student.KEY_ID);
             int col2 = crsr.getColumnIndex(Student.NAME);
@@ -104,27 +97,28 @@ public class WatchTables extends AppCompatActivity implements AdapterView.OnItem
             adp = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tbl);
             lvshow.setAdapter(adp);
         }
-        else{
-                crsr = db.query(TABLE_GRADES, null, null, null, null, null, null);
-                int col1 = crsr.getColumnIndex(Grades.SUBJECT);
-                int col2 = crsr.getColumnIndex(Grades.GRADE);
-                int col3 = crsr.getColumnIndex(Grades.QUARTER);
-                int col4 = crsr.getColumnIndex(Grades.ASSIGNMENT_TYPE);
-                crsr.moveToFirst();
-                while (!crsr.isAfterLast()) {
-                    String subject = crsr.getString(col1);
-                    int grade = crsr.getInt(col2);
-                    int quarter = crsr.getInt(col3);
-                    String assignment_type = crsr.getString(col4);
-                    String tmp = "" + subject + ", " + grade + ", " + quarter + ", " + assignment_type;
-                    tbl.add(tmp);
-                    crsr.moveToNext();
-                }
-                crsr.close();
-                db.close();
-                // display the table
-                adp = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tbl);
-                lvshow.setAdapter(adp);
+        else {
+            db = hlp.getWritableDatabase();
+            crsr = db.query(TABLE_GRADES, null, null, null, null, null, null);
+            int col1 = crsr.getColumnIndex(Grades.SUBJECT);
+            int col2 = crsr.getColumnIndex(Grades.GRADE);
+            int col3 = crsr.getColumnIndex(Grades.QUARTER);
+            int col4 = crsr.getColumnIndex(Grades.ASSIGNMENT_TYPE);
+            crsr.moveToFirst();
+            while (!crsr.isAfterLast()) {
+                String subject = crsr.getString(col1);
+                int grade = crsr.getInt(col2);
+                int quarter = crsr.getInt(col3);
+                String assignment_type = crsr.getString(col4);
+                String tmp = "" + subject + ", " + grade + ", " + quarter + ", " + assignment_type;
+                tbl.add(tmp);
+                crsr.moveToNext();
+            }
+            crsr.close();
+            db.close();
+            // display the table
+            adp = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, tbl);
+            lvshow.setAdapter(adp);
             }
         }
     /**
@@ -137,8 +131,8 @@ public class WatchTables extends AppCompatActivity implements AdapterView.OnItem
      */
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.tafrit, menu);
-        return true;
-    }
+        return super.onCreateOptionsMenu(menu);
+        }
     /**
      * onOptionsItemSelected method
      * <p> Reacting the options menu
@@ -170,5 +164,10 @@ public class WatchTables extends AppCompatActivity implements AdapterView.OnItem
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
     }
 }
