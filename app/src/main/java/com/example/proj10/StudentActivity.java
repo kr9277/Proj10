@@ -18,10 +18,9 @@ import android.widget.Toast;
 public class StudentActivity extends AppCompatActivity implements View.OnCreateContextMenuListener {
     private SQLiteDatabase db;
     private HelperDB hlp;
-    EditText et1, et2, et3, et4, et5, et6, et7, et8, et9;
+    EditText name, address, phoneNumber, homeNumber, ID, dadName, momName, dadNumber, momNumber;
     Button btn1;
     ContentValues cv = new ContentValues();
-    String name, address, phone_number, home_number, dad_name, mom_name, dad_number, mom_number, Id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,25 +29,16 @@ public class StudentActivity extends AppCompatActivity implements View.OnCreateC
         initAll();
     }
     private void initAll() {
-        et1 = findViewById(R.id.et1);
-        et2 = findViewById(R.id.et2);
-        et3 = findViewById(R.id.et3);
-        et4 = findViewById(R.id.et4);
-        et5 = findViewById(R.id.et5);
-        et6 = findViewById(R.id.et6);
-        et7 = findViewById(R.id.et7);
-        et8 = findViewById(R.id.et8);
-        et9 = findViewById(R.id.et9);
+        name = findViewById(R.id.name);
+        address = findViewById(R.id.address);
+        phoneNumber = findViewById(R.id.phoneNumber);
+        homeNumber = findViewById(R.id.homeNumber);
+        dadName = findViewById(R.id.dadName);
+        momName = findViewById(R.id.momName);
+        dadNumber = findViewById(R.id.dadPhone);
+        momNumber = findViewById(R.id.momPhone);
+        ID = findViewById(R.id.ID);
         btn1 = findViewById(R.id.btn1);
-        name = et1.getText().toString();
-        address = et2.getText().toString();
-        phone_number = et3.getText().toString();
-        home_number = et4.getText().toString();
-        dad_name = et5.getText().toString();
-        mom_name = et6.getText().toString();
-        dad_number = et7.getText().toString();
-        mom_number = et8.getText().toString();
-        Id = et9.getText().toString();;
 
         hlp = new HelperDB(this);
         db = hlp.getWritableDatabase();
@@ -99,45 +89,45 @@ public class StudentActivity extends AppCompatActivity implements View.OnCreateC
         return super.onOptionsItemSelected(item);
     }
     public void save_student(View view) {
-        if(!(et9.getText().toString().equals(""))){
-            cv.put(Student.ID, Id);
-            if (!et1.getText().equals("")) {
-                cv.put(Student.NAME, name);
+        if(!(ID.getText().toString().equals(""))){
+            cv.put(Student.ID, ID.getText().toString());
+            if (!name.getText().equals("")) {
+                cv.put(Student.NAME, name.getText().toString());
             }
-            if (!et2.getText().equals("")) {
-                cv.put(Student.ADDRESS, address);
+            if (!address.getText().equals("")) {
+                cv.put(Student.ADDRESS, address.getText().toString());
             }
-            if (!(et3.getText().toString().equals(""))) {
-                cv.put(Student.PHONE_NUMBER, phone_number);
+            if (!(phoneNumber.getText().toString().equals(""))) {
+                cv.put(Student.PHONE_NUMBER, Integer.parseInt(phoneNumber.getText().toString()));
             }
-            if (!(et4.getText().toString().equals(""))) {
-                cv.put(Student.HOME_NUMBER, home_number);
+            if (!(homeNumber.getText().toString().equals(""))) {
+                cv.put(Student.HOME_NUMBER, Integer.parseInt(homeNumber.getText().toString()));
             }
-            if (!et5.getText().equals("")) {
-                cv.put(Student.DAD_NAME, dad_name);
+            if (!dadName.getText().equals("")) {
+                cv.put(Student.DAD_NAME, dadName.getText().toString());
             }
-            if (!et6.getText().equals("")) {
-                cv.put(Student.MOM_NAME, mom_name);
+            if (!momName.getText().equals("")) {
+                cv.put(Student.MOM_NAME, momName.getText().toString());
             }
-            if (!(et7.getText().toString().equals(""))) {
-                cv.put(Student.DAD_NUMBER, dad_number);
+            if (!(dadNumber.getText().toString().equals(""))) {
+                cv.put(Student.DAD_NUMBER, Integer.parseInt(dadNumber.getText().toString()));
             }
-            if (!(et8.getText().toString().equals(""))) {
-                cv.put(Student.MOM_NUMBER, mom_number);
+            if (!(momNumber.getText().toString().equals(""))) {
+                cv.put(Student.MOM_NUMBER, Integer.parseInt(momNumber.getText().toString()));
             }
             db = hlp.getWritableDatabase();
             db.insert(Student.TABLE_STUDENT, null, cv);
             db.close();
 
-            et1.setText("");
-            et2.setText("");
-            et3.setText("");
-            et4.setText("");
-            et5.setText("");
-            et6.setText("");
-            et7.setText("");
-            et8.setText("");
-            et9.setText("");
+            name.setText("");
+            address.setText("");
+            phoneNumber.setText("");
+            homeNumber.setText("");
+            dadName.setText("");
+            momName.setText("");
+            dadNumber.setText("");
+            momNumber.setText("");
+            ID.setText("");
             Toast.makeText(this, "Data pushed to Students table", Toast.LENGTH_LONG).show();
         }
         else{

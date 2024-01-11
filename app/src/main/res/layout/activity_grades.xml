@@ -21,7 +21,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="0.5" />
+            android:layout_weight="1.5" />
 
         <Spinner
             android:id="@+id/sp1"
@@ -63,7 +63,18 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.5" />
+            android:layout_weight="0.3" />
+
+        <Spinner
+            android:id="@+id/students"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2" />
 
         <Spinner
             android:id="@+id/sp2"
@@ -88,7 +99,7 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="2.5" />
+            android:layout_weight="3" />
 
         <Button
             android:id="@+id/btn2"

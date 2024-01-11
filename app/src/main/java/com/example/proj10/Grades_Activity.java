@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +28,7 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
     EditText Subject, Grade;
     String[] assignment_type = {"Choose a assignment", "task","exam","test"};
     String[] quarter = {"Choose a quarter", "first", "second", "third", "fourth"};
+    String[] studentsList = new String[3];//change the number 3 to the students number - how?
     int Quarter;
     ContentValues cv = new ContentValues();
     String subject, grade, AssignmentType;
@@ -35,7 +37,7 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grades);
-
+        studentsList[0] = "Choose a student";
         initAll();
     }
     /**
@@ -101,21 +103,24 @@ public class Grades_Activity extends AppCompatActivity implements View.OnCreateC
     }
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        Log.i("type: ",assignment_type[i+1]);
         if (i!=0){
             if(adapterView.equals(sp1)){
+                Log.i("type: ",assignment_type[i+1]);
                 AssignmentType = assignment_type[i+1];
             }
             else{
+                Log.i("type: ",quarter[i+1]);
                 Quarter = (int)Integer.parseInt(quarter[i+1]);
             }
         }
     }
     public void save_grades(View view){
         if(!Subject.getText().equals("")){
-            cv.put(Grades.SUBJECT, subject);
+            cv.put(Grades.SUBJECT, Subject.getText().toString());
         }
-        if(!(Grade.getText().toString().equals(""))){
-            cv.put(Grades.GRADE, grade);
+        if(!(Grade.getText().toString().equals(""))) {
+            cv.put(Grades.GRADE, Grade.getText().toString());
         }
         cv.put(Grades.ASSIGNMENT_TYPE, AssignmentType);
         cv.put(Grades.QUARTER, Quarter);

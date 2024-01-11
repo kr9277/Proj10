@@ -37,7 +37,7 @@ public class WatchTables extends AppCompatActivity implements AdapterView.OnItem
     Button add;
     ListView lvshow;
 
-    private ArrayList<String> tbl = new ArrayList<>();
+    private ArrayList<String> tbl;
     private ArrayAdapter adp;
     private AlertDialog.Builder adb;
 
@@ -62,6 +62,7 @@ public class WatchTables extends AppCompatActivity implements AdapterView.OnItem
 
 
     public void onSwitch(View v) {
+        tbl = new ArrayList<>();
         if (!sw.isChecked()) {
             db = hlp.getWritableDatabase();
             crsr = db.query(TABLE_STUDENT, null, null, null, null, null, null);
@@ -86,8 +87,8 @@ public class WatchTables extends AppCompatActivity implements AdapterView.OnItem
                 String mom_name = crsr.getString(col7);
                 int dad_number = crsr.getInt(col8);
                 int mom_number = crsr.getInt(col9);
-                int Id = crsr.getInt(col10);
-                String tmp = "" + key + ", " + name + ", " + address + ", " + phone_number + home_number + ", " + dad_name + ", " + mom_name + ", " + dad_number + ", " + mom_number + ", " + Id;
+                int id = crsr.getInt(col10);
+                String tmp = "" + key + ", " + name + ", " + address + ", " + phone_number + home_number + ", " + dad_name + ", " + mom_name + ", " + dad_number + ", " + mom_number + ", " + id;
                 tbl.add(tmp);
                 crsr.moveToNext();
             }
